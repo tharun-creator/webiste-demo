@@ -34,29 +34,29 @@ export function AboutSection({ onOpenBooking }: AboutSectionProps) {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-          className="lg:col-span-4 flex flex-col gap-3.5"
+          className="lg:col-span-4 flex flex-col items-center lg:items-start gap-3.5 w-full"
         >
           <motion.div
             whileHover={{ y: -4, scale: 1.01 }}
             transition={{ type: "spring", bounce: 0.15, visualDuration: 0.4 }}
-            className="relative w-full max-w-[340px] h-[360px] sm:h-[420px] rounded-3xl overflow-hidden shadow-lg border border-slate-200/80 group cursor-pointer bg-slate-100"
+            className="relative w-full max-w-[320px] sm:max-w-[340px] h-[390px] sm:h-[430px] rounded-3xl overflow-hidden shadow-lg border border-slate-200/80 group cursor-pointer bg-slate-900 mx-auto lg:mx-0"
           >
             <Image
               src="/images/doctor-portrait.png"
               alt="Dr. Jebastin - Lead Dental Specialist, Velachery, Chennai"
               fill
-              sizes="(max-width: 768px) 100vw, 360px"
+              sizes="(max-width: 768px) 320px, 340px"
               priority
-              className="object-cover object-[center_15%] scale-115 group-hover:scale-120 transition-transform duration-700"
+              className="object-cover object-[center_top] group-hover:scale-105 transition-transform duration-700"
             />
-            {/* Subtle Gradient & Badge Overlay at Bottom */}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
+            {/* Elegant Bottom Gradient so her face is 100% visible and completely unhindered */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/30 to-transparent via-25% to-50%" />
 
-            <div className="absolute bottom-5 left-5 right-5 text-white">
-              <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-wider uppercase bg-teal-500/90 text-white backdrop-blur-md mb-1.5 shadow-xs">
+            <div className="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 text-white z-10">
+              <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-wider uppercase bg-teal-500/90 text-white backdrop-blur-md mb-1 shadow-xs">
                 Dentist & Dental Surgeon
               </span>
-              <h3 className="text-xl font-medium text-white tracking-tight">
+              <h3 className="text-lg sm:text-xl font-medium text-white tracking-tight">
                 Dr. Jebastin
               </h3>
               <p className="text-xs text-slate-200 font-normal">
@@ -65,7 +65,7 @@ export function AboutSection({ onOpenBooking }: AboutSectionProps) {
             </div>
           </motion.div>
 
-          <div className="flex items-center gap-3 max-w-[340px] p-3 rounded-2xl bg-white border border-slate-200/80 shadow-2xs">
+          <div className="flex items-center gap-3 w-full max-w-[320px] sm:max-w-[340px] p-3 rounded-2xl bg-white border border-slate-200/80 shadow-2xs mx-auto lg:mx-0">
             <div className="w-10 h-10 rounded-full flex-shrink-0 bg-blue-50/70 p-0.5 border border-blue-100 flex items-center justify-center overflow-hidden">
               <Image
                 src="/images/clinic-emblem-clean.png"
