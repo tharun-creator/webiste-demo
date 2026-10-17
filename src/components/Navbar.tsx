@@ -198,7 +198,7 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
                   : "bg-white hover:bg-slate-50 text-slate-900"
               }`}
             >
-              Book a Call
+              Book Appointment
             </button>
           </div>
 
