@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { Navbar } from "./Navbar";
-import { ArrowRightIcon, CheckCircleIcon, StarIcon, PhoneIcon } from "./Icons";
+import { ArrowRightIcon, StarIcon, PhoneIcon } from "./Icons";
 
 interface HeroSectionProps {
   onOpenBooking: (service?: string) => void;
@@ -74,9 +74,9 @@ export function HeroSection({ onOpenBooking }: HeroSectionProps) {
             />
           </motion.div>
 
-          {/* Precision Vignette & Gradient Overlays: Deep navy on left, calm and softer toward dentist on right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-950/25 sm:w-[72%] lg:w-[65%]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30" />
+          {/* Seamless Full-Width Vignette: Soft gradient from left to transparent right with ZERO harsh cutoff */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/45 to-transparent w-full" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-transparent to-slate-950/30 w-full" />
         </div>
 
         {/* Floating Top Navigation */}
@@ -84,14 +84,14 @@ export function HeroSection({ onOpenBooking }: HeroSectionProps) {
           <Navbar onOpenBooking={onOpenBooking} />
         </div>
 
-        {/* Hero Middle Content Area: Left Headline & Right Information Card */}
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-12 py-10 sm:py-16 lg:py-20 flex-1 flex flex-col lg:flex-row lg:items-center justify-between gap-10 lg:gap-12">
-          {/* Left: Headline & Booking Actions */}
+        {/* Hero Middle Content Area: Clean Editorial Layout with Left Focus & Open Right Photography */}
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-12 py-12 sm:py-16 lg:py-24 flex-1 flex flex-col justify-center">
+          {/* Left: Headline, Supporting Copy, Actions & Micro-Trust Strip */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="max-w-xl"
+            className="max-w-2xl"
           >
             {/* Headline with Professional Editorial Hierarchy */}
             <motion.h1
@@ -133,69 +133,36 @@ export function HeroSection({ onOpenBooking }: HeroSectionProps) {
                 <span>Call Clinic</span>
               </a>
             </motion.div>
-          </motion.div>
 
-          {/* Right: Floating Clinical Trust & Highlights Card (Refined Supporting Element) */}
-          <motion.div
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-            whileHover={{ y: -3 }}
-            className="w-full max-w-sm lg:max-w-[310px] xl:max-w-[330px] bg-slate-950/70 backdrop-blur-xl border border-white/15 rounded-2xl p-4.5 sm:p-5 shadow-2xl text-white space-y-3.5 self-start lg:self-center transform-gpu"
-          >
-            {/* Live Availability Status */}
-            <div className="flex items-center justify-between pb-3 border-b border-white/10">
+            {/* Clean, Subtle Micro-Trust Strip (Small Info) */}
+            <motion.div
+              variants={itemVariants}
+              className="mt-10 pt-6 border-t border-white/15 flex flex-wrap items-center gap-4 sm:gap-6 text-white/90"
+            >
               <div className="flex items-center gap-2">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
                 </span>
-                <span className="text-[11px] font-semibold text-emerald-300 tracking-wider uppercase">
+                <span className="text-xs font-semibold text-emerald-300 uppercase tracking-wider">
                   Open Today • Velachery
                 </span>
               </div>
-              <span className="text-[10px] font-mono text-white/90 bg-white/10 px-2.5 py-0.5 rounded-full border border-white/10">
-                Dr. Jebastin, BDS
-              </span>
-            </div>
 
-            {/* Key Clinical Metrics */}
-            <div className="grid grid-cols-2 gap-2.5 pt-0.5">
-              <div className="bg-white/[0.06] rounded-xl p-2.5 border border-white/10">
-                <span className="text-xl sm:text-2xl font-bold tracking-tight text-white block">
-                  26+ <span className="text-xs font-normal text-teal-300">Years</span>
-                </span>
-                <span className="text-[10px] sm:text-[11px] text-slate-300 font-medium leading-tight block mt-0.5">
-                  Dental Experience
-                </span>
+              <span className="text-white/25 hidden sm:inline">•</span>
+
+              <div className="flex items-center gap-1.5 text-xs text-slate-200">
+                <span className="font-semibold text-white">4.9</span>
+                <StarIcon className="w-3.5 h-3.5 fill-amber-300 text-amber-300 inline drop-shadow-[0_1px_3px_rgba(252,211,77,0.4)]" />
+                <span>(120+ Verified Reviews)</span>
               </div>
 
-              <div className="bg-white/[0.06] rounded-xl p-2.5 border border-white/10">
-                <div className="flex items-center gap-1 text-amber-300">
-                  <span className="text-xl sm:text-2xl font-bold tracking-tight text-white">4.9</span>
-                  <StarIcon className="w-3.5 h-3.5 fill-amber-300 inline drop-shadow-[0_1px_4px_rgba(252,211,77,0.4)]" />
-                </div>
-                <span className="text-[10px] sm:text-[11px] text-slate-300 font-medium leading-tight block mt-0.5">
-                  120+ Verified Reviews
-                </span>
-              </div>
-            </div>
+              <span className="text-white/25 hidden sm:inline">•</span>
 
-            {/* Reassuring Clinical Standards */}
-            <div className="space-y-2 pt-0.5 text-xs text-white/90 font-normal">
-              <div className="flex items-center gap-2">
-                <CheckCircleIcon className="w-4 h-4 text-teal-300 shrink-0" />
-                <span>Single-Visit Rotary Root Canal Therapy</span>
+              <div className="text-xs text-slate-200">
+                <strong className="text-white font-medium">26+ Years</strong> Experience Overall
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircleIcon className="w-4 h-4 text-teal-300 shrink-0" />
-                <span>Strict 6-Step Autoclave Sterilization</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircleIcon className="w-4 h-4 text-teal-300 shrink-0" />
-                <span>Zero Wait-Time with Prior Booking</span>
-              </div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </motion.div>
