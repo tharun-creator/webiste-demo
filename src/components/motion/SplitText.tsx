@@ -45,7 +45,7 @@ export function SplitText({
         whileInView="visible"
         viewport={{ once: true, amount: 0.25 }}
         variants={containerVariants}
-        className="inline-block"
+        className="inline-block w-full text-inherit"
       >
         {words.map((word, i) => (
           <span

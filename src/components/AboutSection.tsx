@@ -85,11 +85,11 @@ export function AboutSection({ onOpenBooking }: AboutSectionProps) {
         {/* Right Side: Editorial Statement and Operatory Visual */}
         <div className="lg:col-span-8 space-y-10">
           {/* Large Editorial Headline with Word-by-Word Split Text Reveal */}
-          <div className="max-w-3xl">
+          <div className="max-w-3xl text-center lg:text-left mx-auto lg:mx-0">
             <SplitText
               as="h2"
               text="We deliver personalized dental treatments with modern technology and gentle care ensuring healthy confident smiles for every patient."
-              className="text-2xl sm:text-3xl lg:text-[40px] font-normal leading-[1.25] tracking-tight text-slate-900"
+              className="text-2xl sm:text-3xl lg:text-[40px] font-normal leading-[1.25] tracking-tight text-slate-900 text-center lg:text-left"
               wordClassName="text-slate-900 font-normal"
             />
           </div>
@@ -101,7 +101,7 @@ export function AboutSection({ onOpenBooking }: AboutSectionProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
-              className="sm:col-span-6 space-y-4 text-sm text-slate-600 leading-relaxed font-normal"
+              className="sm:col-span-6 space-y-4 text-sm text-slate-600 leading-relaxed font-normal text-center sm:text-left"
             >
               <p>
                 At Jebastins Dental Clinic, we believe dentistry should be compassionate,
@@ -109,7 +109,7 @@ export function AboutSection({ onOpenBooking }: AboutSectionProps) {
                 checkup or restorative implant procedure, our focus is your long-term oral health and peace of mind.
               </p>
 
-              <div className="pt-2 flex items-center gap-6">
+              <div className="pt-2 flex items-center justify-center sm:justify-start gap-6">
                 <motion.button
                   whileHover={{ x: 2 }}
                   whileTap={{ scale: 0.98 }}
