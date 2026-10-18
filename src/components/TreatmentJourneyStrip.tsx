@@ -1,90 +1,130 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "motion/react";
+import {
+  ShieldCheckIcon,
+  SparklesIcon,
+  CheckCircleIcon,
+  ClockIcon,
+  ArrowRightIcon,
+} from "./Icons";
 
 interface TreatmentJourneyStripProps {
   onSelectStage?: (stageName: string) => void;
 }
 
 export function TreatmentJourneyStrip({ onSelectStage }: TreatmentJourneyStripProps) {
-  const [activeStage, setActiveStage] = useState(0);
-
-  const stages = [
+  const pillars = [
     {
-      title: "Smile Assessment",
-      detail: "Digital 3D oral scan, intraoral photography, and gentle comprehensive bite analysis.",
+      icon: ShieldCheckIcon,
+      tag: "Endodontics",
+      title: "Single-Sitting Root Canal",
+      description:
+        "Pain-managed rotary endodontics preserving your natural tooth with comfort and minimal visits.",
+      badge: "Gentle Care",
     },
     {
-      title: "Care Planning",
-      detail: "Transparent treatment roadmap, clear cost breakdown, and tailored timeline.",
+      icon: SparklesIcon,
+      tag: "Diagnostics",
+      title: "Digital 3D & Intraoral Scans",
+      description:
+        "Low-radiation precision digital imaging that lets you see exactly what the doctor sees on-screen.",
+      badge: "HD Imaging",
     },
     {
-      title: "Treatment Process",
-      detail: "Pain-managed precision clinical care using modern sterilized instrumentation.",
+      icon: CheckCircleIcon,
+      tag: "Safety Standard",
+      title: "Strict 6-Step Sterilization",
+      description:
+        "Class-B autoclave sterilization, vacuum decontamination, and 100% sealed single-use pouches.",
+      badge: "Hospital Grade",
     },
     {
-      title: "Dental Maintenance",
-      detail: "Periodic preventive hygiene, enamel protection, and long-term smile wellness.",
+      icon: ClockIcon,
+      tag: "Patient Comfort",
+      title: "Zero-Wait Dedicated Slots",
+      description:
+        "Individual prior booking ensuring focused one-on-one doctor time with no waiting-room rush.",
+      badge: "On-Time Visits",
     },
   ];
 
   return (
-    <section id="journey" className="w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <section id="standards" className="w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
-        className="max-w-7xl mx-auto bg-white rounded-2xl sm:rounded-3xl border border-slate-200/80 p-4 sm:p-6 shadow-sm"
+        className="max-w-7xl mx-auto bg-white rounded-2xl sm:rounded-3xl border border-slate-200/80 p-5 sm:p-7 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.04)]"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 relative">
-          {stages.map((stage, idx) => {
-            const isActive = activeStage === idx;
+        {/* Subtle Editorial Top Bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 mb-5 border-b border-slate-100">
+          <div>
+            <span className="text-[11px] font-semibold tracking-wider uppercase text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-100/80">
+              Clinical Excellence & Care Standards
+            </span>
+            <h2 className="text-lg sm:text-xl font-medium text-slate-900 tracking-tight mt-1.5">
+              Why Patients in Velachery Trust Dr. Jebastin
+            </h2>
+          </div>
+
+          <div className="flex items-center gap-2 text-xs text-slate-600 bg-slate-50 px-3 py-1.5 rounded-full border border-slate-200/60 self-start sm:self-auto">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            </span>
+            <span className="font-medium text-slate-700">Open Today</span>
+            <span className="text-slate-300">•</span>
+            <span>26+ Years Experience</span>
+          </div>
+        </div>
+
+        {/* 4 Clinical Pillars Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+          {pillars.map((pillar) => {
+            const IconComponent = pillar.icon;
             return (
               <motion.div
-                key={stage.title}
-                onClick={() => {
-                  setActiveStage(idx);
-                  if (onSelectStage) onSelectStage(stage.title);
-                }}
-                whileHover={{ y: -2 }}
+                key={pillar.title}
+                whileHover={{ y: -3 }}
                 transition={{ type: "spring", bounce: 0.15, visualDuration: 0.3 }}
-                className="group p-4 rounded-xl cursor-pointer relative z-10 transition-colors"
+                onClick={() => {
+                  if (onSelectStage) onSelectStage(pillar.title);
+                }}
+                className="group p-5 rounded-2xl bg-slate-50/60 hover:bg-white border border-slate-200/70 hover:border-teal-500/30 hover:shadow-md transition-all duration-300 cursor-pointer flex flex-col justify-between"
               >
-                {/* Smooth Animated Background Pill using Motion's layoutId */}
-                {isActive && (
-                  <motion.div
-                    layoutId="active-journey-indicator"
-                    className="absolute inset-0 bg-slate-50/95 rounded-xl border border-teal-600/30 shadow-2xs -z-10"
-                    transition={{ type: "spring", bounce: 0.15, duration: 0.5 }}
-                  />
-                )}
+                <div>
+                  {/* Card Header: Icon + Category Badge */}
+                  <div className="flex items-center justify-between mb-3.5">
+                    <div className="w-10 h-10 rounded-xl bg-teal-50 text-teal-700 group-hover:bg-teal-600 group-hover:text-white transition-colors flex items-center justify-center border border-teal-100/60">
+                      <IconComponent className="w-5 h-5" />
+                    </div>
+                    <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider bg-white px-2 py-0.5 rounded-full border border-slate-200/70">
+                      {pillar.badge}
+                    </span>
+                  </div>
 
-                <div className="flex items-center gap-2 mb-2">
-                  {/* Subtle active state indicator */}
-                  <div
-                    className={`w-2 h-2 rounded-full transition-colors ${
-                      isActive ? "bg-teal-600 ring-4 ring-teal-50" : "bg-slate-300 group-hover:bg-slate-400"
-                    }`}
-                  />
-                  <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                    Stage 0{idx + 1}
+                  {/* Title & Tag */}
+                  <span className="text-[11px] font-medium text-teal-700 block mb-0.5">
+                    {pillar.tag}
                   </span>
+                  <h3 className="text-base font-semibold text-slate-900 group-hover:text-teal-700 transition-colors leading-snug">
+                    {pillar.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="mt-2 text-xs text-slate-600 leading-relaxed font-normal">
+                    {pillar.description}
+                  </p>
                 </div>
 
-                <h3 className="text-sm sm:text-base font-medium text-slate-900 group-hover:text-teal-700 transition-colors">
-                  {stage.title}
-                </h3>
-
-                <p className="mt-1 text-xs text-slate-500 leading-relaxed">
-                  {stage.detail}
-                </p>
-
-                {/* Dashed connector line between items on desktop */}
-                {idx < stages.length - 1 && (
-                  <div className="hidden lg:block absolute -right-3 top-1/2 -translate-y-1/2 w-6 border-t-2 border-dashed border-slate-200 z-0 pointer-events-none" />
-                )}
+                {/* Subtle Interactive Trigger */}
+                <div className="pt-4 mt-4 border-t border-slate-200/50 flex items-center justify-between text-xs font-semibold text-teal-700 group-hover:text-teal-800">
+                  <span>Learn more</span>
+                  <ArrowRightIcon className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </div>
               </motion.div>
             );
           })}
